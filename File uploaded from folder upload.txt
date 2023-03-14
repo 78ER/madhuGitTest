@@ -1,0 +1,133 @@
+package cog.stepdefs.web;
+
+import java.text.ParseException;
+
+import cog.framework.ScenarioContext;
+import cog.pageclass.web.AbsencePage;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class AbsenceStepDef {
+
+	private ScenarioContext sc;
+	private AbsencePage createAbs;
+	
+    public AbsenceStepDef(ScenarioContext scenarioContext) {
+        this.sc = scenarioContext;
+        createAbs = new AbsencePage(sc);
+    } 
+   
+    @Then("A new Absence is created for the given date time in Red colour") 
+    public void verifyRedClr_Morning() throws InterruptedException {    	
+    	createAbs.verifyRedClr_Morning();
+        sc.getScenario().attach("A new Absence is created for the given date time in Red colour".getBytes(), "text/plain", "A new Absence is created for the given date time in Red colour");
+        System.out.println("A new Absence is created for the given date time in Red colour ");
+    } 
+
+    @When("^User wants to create an Approved Absence in the '(.+)' from 10:00 to 11:00AM$")  
+    public void createcancelAbsence(String entryClassification ) throws InterruptedException {   	
+		createAbs.createApprovedAbsenceMorning(entryClassification);   	
+        sc.getScenario().attach(" Absence Created in SF sucessfully".getBytes(), "text/plain", " Absence Created in SF sucessfully");
+    	System.out.println("Approved Absence Created in SF sucessfully");
+    } 
+    
+    @And("Approved Absence is visible in Salesforce Calendar from 10:00 to 11:00AM") 
+    public void verifyApprovedCalendarforMorning() throws InterruptedException, ParseException {
+    	createAbs.verifyApprovedCalendarforMorning();
+        sc.getScenario().attach("The Morning Absence is visible in Salesforce Calendar".getBytes(), "text/plain", "The Morning Absence is visible in Salesforce Calendar");
+        System.out.println("The Morning Absence is visible in Salesforce Calendar ");
+    } 
+    
+    @When("^User wants to create an Unapproved Absence in the '(.+)' from 9:00 to 10:00AM$")     
+    public void createAbsenceMorning(String entryClassification ) throws InterruptedException {   	
+		createAbs.createAbsenceMorning(entryClassification);   	
+        sc.getScenario().attach(" Absence Created in SF sucessfully".getBytes(), "text/plain", " Absence Created in SF sucessfully");
+    	System.out.println("Unapproved Absence Created in SF sucessfully");
+    } 
+    
+    @And("Approved Absence is visible in Salesforce Calendar from 9:00 to 10:00AM") 
+    public void verifyCalendarforMorning() throws InterruptedException, ParseException {
+    	createAbs.verifyCalendarforMorning();
+        sc.getScenario().attach("The Morning Absence is visible in Salesforce Calendar".getBytes(), "text/plain", "The Morning Absence is visible in Salesforce Calendar");
+        System.out.println("The Morning Absence is visible in Salesforce Calendar ");
+    } 
+    
+    @When("^User wants to create an Approved Absence for '(.+)' type$")     
+    public void createAllDayAbsence(String entryClassification) throws InterruptedException {   	
+		createAbs.createAllDayAbsence(entryClassification);   	
+        sc.getScenario().attach("Absence Created in SF sucessfully for All Day".getBytes(), "text/plain", " Absence Created in SF sucessfully");
+    	System.out.println("approved Absence Created in SF sucessfully for All Day");
+    } 
+    
+    @And("All day Absence is visible in Salesforce Calendar") 
+    public void verifyCalendarforAllDay() throws InterruptedException {
+    	createAbs.verifyCalendarforAllDay();
+        sc.getScenario().attach("The All Day Absence is visible in Salesforce Calendar".getBytes(), "text/plain", "The Morning Absence is visible in Salesforce Calendar");
+        System.out.println("The AllDay Absence is visible in Salesforce Calendar ");
+    } 
+       
+    
+ @When("^User wants to create an Approved Absence in the '(.+)' from 8:00 to 9:00AM$")     
+ public void createApprovedAbsenceMorning(String entryClassification ) throws InterruptedException {   	
+		createAbs.createcancelAbsence(entryClassification);   		
+        sc.getScenario().attach(" Absence Created in SF sucessfully".getBytes(), "text/plain", " Absence Created in SF sucessfully");
+ 	    System.out.println("Approved Absence Created in SF sucessfully");
+ } 
+    @Then("user click on YES in confirm cancel Dialog to cancel Absence") 
+    public void CancelAbsence() throws InterruptedException {
+    	createAbs.CancelAbsence();   	
+    	sc.getScenario().attach("user click on YES in confirm cancel Dialog Successfully".getBytes(), "text/plain", "user click on YES in confirm cancel Dialog Successfully");
+    	System.out.println("user click on YES in confirm cancel Dialog Successfully");
+    }
+    
+    @And("The absence is no longer visible in Salesforce online between 8:00 to 9:00") 
+    public void verifyCancelAbsenceCalendar() throws InterruptedException, ParseException {
+    	createAbs.verifyCancelAbsenceCalendar();
+        sc.getScenario().attach("The Morning Absence is visible in Salesforce Calendar".getBytes(), "text/plain", "The Morning Absence is visible in Salesforce Calendar");
+        System.out.println("The Morning Absence is visible in Salesforce Calendar ");
+    } 
+    
+    @When("The user wants to edit the created absence") 
+    public void editAppointment_Morning() throws InterruptedException {
+    	createAbs.editAbsence();   
+    	sc.getScenario().attach("New Morning Absence is Edited Successfully".getBytes(), "text/plain", "New Morning Absence is Edited Successfully");
+    	System.out.println("New Morning Absence is Edited Successfully");
+    }
+    
+    @And("Edited Absence is visible in Salesforce Calendar from 9:01 to 10:00") 
+    public void verifyCalendarforEditEntry() throws InterruptedException, ParseException {
+    	createAbs.verifyCalendarforEditEntry();
+        sc.getScenario().attach("The Edited Absence is visible in Salesforce Calendar".getBytes(), "text/plain", "The Edited Absence is visible in Salesforce Calendar");
+        System.out.println("The Edited Absence is visible in Salesforce Calendar ");
+}
+    
+    @When("^User wants to create an Approved Absence in the '(.+)' from 11:00 to 12:00AM$")     
+    public void createAbsenceBK(String entryClassification) throws InterruptedException {   	
+		createAbs.createAbsenceBK(entryClassification);   	
+        sc.getScenario().attach(" Absence Created in SF sucessfully".getBytes(), "text/plain", " Absence Created in SF sucessfully");
+    	System.out.println("Unapproved Absence Created in SF sucessfully");
+    } 
+    
+    @And("Absence is visible in Salesforce Calendar from 11:00 to 12:00") 
+    public void verifyCalendarBK() throws InterruptedException, ParseException {
+    	createAbs.verifyCalendarBK();
+        sc.getScenario().attach("The Morning Absence is visible in Salesforce Calendar".getBytes(), "text/plain", "The Morning Absence is visible in Salesforce Calendar");
+        System.out.println("The Morning Absence is visible in Salesforce Calendar ");
+    } 
+    
+    @Then("User marks Record as Back-Office Mastered Record in calendar") 
+    public void markRecordAsBackOffice() throws InterruptedException {
+        sc.getScenario().attach("User marked Record as Back-Office Mastered Record in calendar sucessfully".getBytes(), "text/plain", "User marked Record as Back-Office Mastered Record in calendar sucessfully");
+        System.out.println("User marked Record as Back-Office Mastered Record in calendar sucessfully");
+    } 
+    
+@Then("verify that user should not allowed to edit Back-Office Mastered Record")
+    public void verifyError() throws InterruptedException, ParseException {
+    	createAbs.verifyError();
+    	createAbs.deletebackOfficeRecord();
+        sc.getScenario().attach("Edit operation is not allowed for entry which is marked as Back-Office Mastered in Salesforce".getBytes(), "text/plain", "Edit operation is not allowed for entry");
+        System.out.println("Edit operation is not allowed for entry which is marked as Back-Office Mastered in Salesforce");
+    } 
+}
+
